@@ -115,7 +115,7 @@
  let artworkWidth=1536,artworkHeight=1024;
  let strokeAnchorsReady=false;
  const artwork=new Image();
- artwork.src=electronics?'assets/engineering-mixed-v2.svg':(light?'assets/engineering-sketches-light-v1.png':'assets/engineering-sketches-v2.png');
+ artwork.src=electronics?'assets/engineering-mixed-v2.svg':(light?'assets/engineering-sketches-light-v1.webp':'assets/engineering-sketches-v2.webp');
  artwork.addEventListener('load',()=>{
   artworkWidth=artwork.naturalWidth;artworkHeight=artwork.naturalHeight;
   strokeAnchorsReady=true;resize();

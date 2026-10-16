@@ -37,6 +37,22 @@ are told apart by the subject.
 
 The page uses the "electronics" background collage by default (`assets/engineering-mixed-v2.svg`).
 Adding `?background=classic` to the address switches to the earlier sketch artwork.
+`<html>` carries `data-background="electronics"` in the markup, so the browser never starts
+downloading the classic artwork before the script runs.
+
+## Image weight
+
+Images are WebP. The photographs and sketches are lossy WebP at quality 82; the logos are resized
+to about three times their displayed width. `engineering-mixed-v2.svg` embeds its pencil drawing
+once, as a lossless WebP, and reuses it with `<use>` in its three clipped regions. The drawing keeps
+only the red channel, which is the only channel its `classic-ink` filter reads, and is blank outside
+the clipped regions. `linkport-symbol-reference.png` stays PNG because the script traces its pixels.
+
+When a new image is added, convert it before committing, for example:
+
+```
+python3 -c "from PIL import Image; Image.open('in.png').convert('RGB').save('out.webp', quality=82, method=6)"
+```
 
 ## Change the site
 

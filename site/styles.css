@@ -11,11 +11,11 @@
 @media(max-width:420px){.hero h1{font-size:39px}.hero-actions{gap:20px}.button{gap:24px;padding:16px 19px}.system-diagram{padding:17px}.diagram-label{font-size:9px;letter-spacing:.7px}.system-node{gap:11px;padding:18px 12px}.system-node h2{font-size:21px}.node-mark{display:none}.diagram-bottom span:last-child{display:none}.form-grid{grid-template-columns:1fr;gap:0}.contact form{padding:22px 18px}.workflow-panel{padding:20px}.example-row{font-size:11px}.contact h2{font-size:42px}.footer-top nav{width:100%}.back-top{margin-left:0}.workflow-controls strong{font-size:16px}}
 @media(max-width:760px){.field input,.field textarea,.field select{font-size:16px}}
 .hero,.approach{position:relative;isolation:isolate}
-.hero:before,.approach:before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:url('assets/engineering-sketches-v2.png');background-size:cover;background-position:center;opacity:.24}
+.hero:before,.approach:before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:url('assets/engineering-sketches-v2.webp');background-size:cover;background-position:center;opacity:.24}
 .approach:before{opacity:.28;background-position:center 60%}
 @media(max-width:760px){.hero:before{background-size:auto 780px;background-position:left top;background-repeat:no-repeat;opacity:.22}.approach:before{opacity:.2}}
 .company,.workflow,.fit{position:relative;isolation:isolate}
-.company:before,.workflow:before,.fit:before{content:'';position:absolute;inset:0 -35px;z-index:-1;pointer-events:none;background-image:url('assets/engineering-sketches-light-v1.png');background-size:cover;background-position:center;opacity:.65;mask-image:linear-gradient(to bottom,#000,transparent 43%,transparent 57%,#000)}
+.company:before,.workflow:before,.fit:before{content:'';position:absolute;inset:0 -35px;z-index:-1;pointer-events:none;background-image:url('assets/engineering-sketches-light-v1.webp');background-size:cover;background-position:center;opacity:.65;mask-image:linear-gradient(to bottom,#000,transparent 43%,transparent 57%,#000)}
 .workflow:before{opacity:.5;background-position:center 30%}
 .fit:before{opacity:.55;background-position:center 70%}
 @media(max-width:760px){.company:before,.workflow:before,.fit:before{inset:0 -15px;background-size:auto 650px;background-position:left top;background-repeat:no-repeat;opacity:.45}}
@@ -43,7 +43,7 @@
 .workflow-controls button:hover:not([aria-selected=true]){background:#eef3fa;box-shadow:inset 3px 0 0 var(--copper)}
 .workflow-controls button:active,.menu-toggle:active{transform:scale(.985)}
 .site-footer{position:relative;isolation:isolate;background:var(--deep);padding-block:48px 27px}
-.site-footer:before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:url('assets/engineering-sketches-v2.png') center bottom/cover no-repeat;opacity:.16;mask-image:linear-gradient(90deg,#000,transparent 40%,transparent 65%,#000)}
+.site-footer:before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:url('assets/engineering-sketches-v2.webp') center bottom/cover no-repeat;opacity:.16;mask-image:linear-gradient(90deg,#000,transparent 40%,transparent 65%,#000)}
 .footer-address{font-style:normal;font-size:12px;line-height:1.7;color:#b7c7e0;margin-top:19px}
 .footer-top{align-items:flex-start}
 .footer-top nav{gap:10px}
@@ -62,7 +62,7 @@
 .section-product-mark img{width:170px;max-width:none;height:auto}
 .product-section-label>.eyebrow{margin:0;padding-left:18px;border-left:1px solid #cdd6e4;font-size:10px}
 .capabilities,.ai-support{position:relative;isolation:isolate}
-.capabilities:before,.ai-support:before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:url('assets/engineering-sketches-light-v1.png') center/cover no-repeat;opacity:.6;mix-blend-mode:multiply;mask-image:radial-gradient(ellipse at 0% 0%,#000,transparent 46%),radial-gradient(ellipse at 100% 100%,#000,transparent 46%)}
+.capabilities:before,.ai-support:before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:url('assets/engineering-sketches-light-v1.webp') center/cover no-repeat;opacity:.6;mix-blend-mode:multiply;mask-image:radial-gradient(ellipse at 0% 0%,#000,transparent 46%),radial-gradient(ellipse at 100% 100%,#000,transparent 46%)}
 .ai-support:before{inset:0 -35px;opacity:.65;background-position:center bottom;mask-image:linear-gradient(to bottom,#000,transparent 35%,transparent 50%,#000)}
 @media(max-width:760px){.product-section-label{gap:15px;margin-bottom:22px}.section-product-mark,.section-product-mark img{width:155px}.section-product-mark{height:38px}.product-section-label>.eyebrow{padding-left:14px}.capabilities:before{opacity:.4;background-size:auto 780px;background-position:right bottom}.ai-support:before{inset:0 -15px;opacity:.45;background-size:auto 780px;background-position:right bottom}}
 .ai-support{display:grid;grid-template-columns:1fr 1fr;gap:90px;border-bottom:1px solid var(--line)}
@@ -106,7 +106,7 @@ html[data-background="electronics"] :is(.company,.workflow,.fit,.ai-support,.cap
 /* A quieter finish: decorative drawings fill the empty column, while
    questions and form controls keep an uninterrupted reading surface. */
 .faq,.contact{position:relative;isolation:isolate}
-.faq:before,.contact:before{content:'';position:absolute;inset:0;z-index:-2;pointer-events:none;background:url('assets/engineering-sketches-light-v1.png') center bottom/cover no-repeat;opacity:.47;mix-blend-mode:multiply}
+.faq:before,.contact:before{content:'';position:absolute;inset:0;z-index:-2;pointer-events:none;background:url('assets/engineering-sketches-light-v1.webp') center bottom/cover no-repeat;opacity:.47;mix-blend-mode:multiply}
 .faq:before{left:calc(50% - 50vw);right:calc(50% - 50vw);mask-image:linear-gradient(to right,#000 0%,#000 21%,transparent 43%),linear-gradient(to bottom,transparent 15%,#000 55%);mask-composite:intersect}
 .contact:before{mask-image:linear-gradient(to right,#000 0%,#000 15%,transparent 44%,transparent 87%,#000 100%),linear-gradient(to bottom,transparent 12%,#000 58%);mask-composite:intersect;opacity:.38}
 html[data-background="electronics"] :is(.faq,.contact):before{background-image:url('assets/engineering-mixed-v2.svg')}
