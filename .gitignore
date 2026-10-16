@@ -1,0 +1,7 @@
+# Local review screenshots and tool output stay out of the repository.
+review/
+node_modules/
+.lighthouseci/
+*.log
+Thumbs.db
+.DS_Store

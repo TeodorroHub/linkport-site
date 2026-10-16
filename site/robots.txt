@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://linkport.cz/sitemap.xml

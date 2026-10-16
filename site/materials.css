@@ -1,0 +1,52 @@
+/* Materials are defined by their edges; the drawing area stays quiet and clear. */
+.hero,.approach,.site-footer{
+ background-image:repeating-linear-gradient(0deg,rgba(207,219,233,.028) 0,rgba(207,219,233,.028) .6px,transparent .6px,transparent 2.5px),linear-gradient(90deg,rgba(0,5,14,.12),rgba(132,151,174,.035) 48%,rgba(0,5,14,.09));
+ box-shadow:inset 0 4px 0 #0a1220,inset 0 -4px 0 #060c16;
+}
+.product-intro,.faq,.contact,.privacy{position:relative;isolation:isolate}
+.material-glass{position:absolute;left:12px;right:12px;top:10px;bottom:10px;z-index:-3;pointer-events:none;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.035));box-shadow:0 6px 18px rgba(21,45,74,.035)}
+.shell>.material-glass{left:calc(50% - 50vw + 12px);right:calc(50% - 50vw + 12px)}
+.material-edge{position:absolute;z-index:1;pointer-events:none}
+.glass-edge{inset:10px 12px;border-radius:18px;border:1px solid rgba(130,151,176,.30);box-shadow:inset 0 2px 0 rgba(255,255,255,.98),inset 2px 0 2px rgba(255,255,255,.82),inset -2px 0 2px rgba(142,172,206,.17),inset 0 -3px 2px rgba(104,140,183,.13),0 1px 0 rgba(255,255,255,.95),0 5px 12px rgba(26,52,84,.045)}
+.shell>.glass-edge{left:calc(50% - 50vw + 12px);right:calc(50% - 50vw + 12px)}
+.glass-edge:before{content:'';position:absolute;inset:3px;border:1px solid rgba(255,255,255,.8);border-radius:14px;box-shadow:inset 0 -1px 0 rgba(153,182,215,.10)}
+.glass-edge:after{content:'';position:absolute;left:24px;right:24px;top:-1px;height:2px;background:linear-gradient(90deg,transparent,rgba(182,207,234,.58) 12%,#fff 34%,#fff 58%,rgba(180,204,230,.48) 85%,transparent)}
+.steel-edge{inset:0;border-left:1px solid rgba(182,200,219,.13);border-right:1px solid rgba(1,6,14,.6)}
+.steel-edge:before,.steel-edge:after{content:'';position:absolute;left:0;right:0;height:4px;background:linear-gradient(180deg,#c4cdd5 0%,#6c7a89 24%,#263342 51%,#091322 78%,#a9b7c7 100%);box-shadow:0 1px 0 rgba(0,3,9,.7)}
+.steel-edge:before{top:0}
+.steel-edge:after{bottom:0;transform:scaleY(-1)}
+/* The technical drawings sit in front of the material, with a modest contrast lift. */
+.hero:before{opacity:.36}
+.approach:before{opacity:.40}
+.site-footer:before{opacity:.24}
+.company:before,.workflow:before,.fit:before,.ai-support:before,.capabilities:before{opacity:.72;mix-blend-mode:multiply}
+.site-header{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:0 1px 0 rgba(122,147,176,.2)}
+.brand img{mix-blend-mode:multiply}
+.contact form,.workflow-panel{background:rgba(255,255,255,.92);border-radius:10px;box-shadow:inset 0 1px 0 #fff,0 5px 24px rgba(26,52,84,.045);backdrop-filter:none;-webkit-backdrop-filter:none}
+.system-diagram{background:#172a47;box-shadow:inset 0 1px 0 rgba(231,241,252,.1),0 12px 30px rgba(1,8,20,.12)}
+@media(max-width:760px){.material-glass,.glass-edge{left:6px;right:6px;border-radius:12px}.shell>.material-glass,.shell>.glass-edge{left:calc(50% - 50vw + 6px);right:calc(50% - 50vw + 6px)}.glass-edge:before{border-radius:9px}.hero:before{opacity:.29}.approach:before{opacity:.32}.company:before,.workflow:before,.fit:before,.ai-support:before,.capabilities:before{opacity:.58}}
+
+/* A quiet substrate reveals the glass thickness without washing out the drawings. */
+body{background:#edf1f5}
+.material-glass{background:rgba(255,255,255,.72)}
+.glass-edge{border-color:rgba(126,148,174,.35);box-shadow:inset 0 2px 0 #fff,inset 2px 0 2px rgba(255,255,255,.92),inset -2px 0 2px rgba(130,161,198,.17),inset 0 -3px 2px rgba(104,140,183,.16),0 1px 0 rgba(255,255,255,.96),0 5px 12px rgba(26,52,84,.065)}
+.glass-edge:before{background:linear-gradient(108deg,rgba(255,255,255,.95),rgba(168,195,224,.28) 28%,rgba(255,255,255,.92) 50%,rgba(157,183,214,.25) 78%,rgba(255,255,255,.9));padding:2px;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor}
+
+.hero,.approach,.site-footer{background-image:linear-gradient(rgba(12,23,44,.64),rgba(12,23,44,.64)),url('assets/machined-navy-steel-v1.png');background-size:cover;background-position:center}
+
+/* The fixed navigation is a glass cap over the metal-and-glass sections. */
+.site-header{background:linear-gradient(100deg,#ffffff 0%,#ffffff 24%,rgba(255,255,255,.87) 55%,rgba(244,249,255,.84) 100%);border-bottom:1px solid rgba(128,151,180,.40);box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 rgba(255,255,255,.90),0 3px 10px rgba(17,37,65,.08);backdrop-filter:blur(18px) saturate(110%);-webkit-backdrop-filter:blur(18px) saturate(110%)}
+.site-header:before{content:'';position:absolute;inset:4px 6px;pointer-events:none;border:1px solid rgba(162,183,208,.29);border-radius:10px;box-shadow:inset 0 1px 0 #fff,inset 1px 0 0 rgba(255,255,255,.94),inset 0 -1px 0 rgba(145,175,207,.16)}
+.site-header:after{content:'';position:absolute;left:22px;right:22px;bottom:3px;height:1px;pointer-events:none;background:linear-gradient(90deg,rgba(175,196,219,.24),rgba(255,255,255,.98) 30%,rgba(164,188,216,.38) 75%,rgba(255,255,255,.8))}
+.site-header .header-inner{position:relative}
+@media(max-width:760px){.site-header{background:linear-gradient(100deg,#fff 0%,#fff 45%,rgba(249,252,255,.9) 100%)}.site-header:before{inset:3px 4px;border-radius:8px}}
+
+/* Mixed mechanical/electronics trial: restore edge detail and expose network diagrams. */
+html[data-background="electronics"] :is(.hero,.approach):before{opacity:.49}
+html[data-background="electronics"] .site-footer:before{opacity:.38}
+html[data-background="electronics"] :is(.company,.capabilities,.ai-support,.workflow,.fit):before{
+ opacity:.57;
+ mask-image:linear-gradient(to right,#000 0%,#000 16%,transparent 39%,transparent 61%,#000 84%,#000 100%),linear-gradient(to bottom,#000,transparent 33%,transparent 67%,#000);
+ mask-composite:add;
+}
+@media(max-width:760px){html[data-background="electronics"] :is(.hero,.approach):before{opacity:.43}html[data-background="electronics"] :is(.company,.capabilities,.ai-support,.workflow,.fit):before{opacity:.51}}
