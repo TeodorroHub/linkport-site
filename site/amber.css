@@ -1,0 +1,95 @@
+/* Amber study: shared light spectrum sampled from the approved buttons. */
+html[data-accent="amber"]{
+ --copper:#f3a05e;--amber-edge:#ffc079;--amber-hot:#ffe1a8;
+ --amber-ink:#92410f;--amber-light:#ffae64;--amber-glow:255,118,28;
+}
+html[data-accent="amber"] .hero h1 span{
+ background:linear-gradient(110deg,#ffd3a0 3%,#ffae64 48%,#e37b36 94%);
+ color:var(--amber-light);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+/* Reference-matched amber: luminous orange body, hot inner rim, separate halo. */
+html[data-accent="amber"] :is(.button-copper,.site-header .nav-contact,.form-submit .button-dark){
+ color:#fff6e9;border:1px solid #ffc079;border-radius:11px;
+ background:radial-gradient(ellipse at 50% 52%,#702809 0%,#7d2c07 47%,#a43b07 85%,#c1530d 100%);
+ box-shadow:inset 0 1px 1px #ffe1a8,inset 0 0 3px 1px #ffbc69,inset 0 0 12px 2px #ff7109a6,inset 0 -1px 2px #ffae53cc,0 0 0 1px #bd4b1266,0 0 3px 1px #ffa04f99,0 0 15px 2px #f16b1461,0 4px 11px #4a18031f;
+ text-shadow:0 1px 2px #471501;
+ transition:box-shadow .22s ease,background .22s ease,transform .2s ease;
+}
+html[data-accent="amber"] :is(.button-copper,.site-header .nav-contact,.form-submit .button-dark):hover{
+ color:#fff9ed;border-color:#ffd397;
+ background:radial-gradient(ellipse at 50% 52%,#80300c 0%,#8d3108 47%,#b34206 85%,#d25b0e 100%);
+ box-shadow:inset 0 1px 2px #ffedc6,inset 0 0 4px 1px #ffd18d,inset 0 0 15px 3px #ff780cc2,inset 0 -1px 2px #ffc072,0 0 0 1px #d85d1580,0 0 5px 1px #ffaf63b3,0 0 20px 2px #f3771d80,0 5px 14px #4a180326;
+}
+html[data-accent="amber"] :is(.button-copper,.site-header .nav-contact,.form-submit .button-dark):active{
+ transform:translateY(1px);background:radial-gradient(ellipse at 50% 52%,#632309,#752808 55%,#a53b08);
+ box-shadow:inset 0 2px 4px #4a18034d,inset 0 0 4px 1px #ffd18d,inset 0 0 12px 2px #ff730ac2,0 0 3px #ffb86b,0 0 12px #f3771d80;
+}
+/* Secondary actions, indicators and text all use the same amber spectrum. */
+html[data-accent="amber"] .copper{color:#f3b77e;text-shadow:0 0 10px rgba(var(--amber-glow),.12)}
+html[data-accent="amber"] .principles article>span{color:#ffb574;text-shadow:0 0 9px rgba(var(--amber-glow),.15)}
+html[data-accent="amber"] .text-link.pale>span{color:var(--amber-edge)}
+html[data-accent="amber"] .fit-arrow{color:#ba662c;text-shadow:0 1px 1px #ffe1c480}
+html[data-accent="amber"] .text-link:hover{border-color:#cb8854;background:#fff3e8f0}
+html[data-accent="amber"] .text-link.pale:hover{border-color:#f4a15e99;background:rgba(var(--amber-glow),.06)}
+html[data-accent="amber"] .text-link:hover>span{background:rgba(var(--amber-glow),.09);color:var(--amber-ink)}
+html[data-accent="amber"] .text-link.pale:hover>span{color:var(--amber-edge);background:rgba(var(--amber-glow),.10)}
+html[data-accent="amber"] .workflow-controls button[aria-selected="true"]{
+ position:relative;background:radial-gradient(ellipse at 0% 50%,rgba(var(--amber-glow),.12),transparent 78%),linear-gradient(110deg,#17263b,#111f38);
+ border-color:#c77e4966;box-shadow:inset 3px 0 0 var(--amber-edge),inset 12px 0 22px -20px #ff8a32,0 0 0 1px #ec88351a;
+}
+html[data-accent="amber"] .workflow-controls button[aria-selected="true"]:before{
+ content:'';position:absolute;left:0;top:20%;height:60%;width:2px;background:var(--amber-hot);box-shadow:0 0 8px #ff8a32;pointer-events:none;
+}
+html[data-accent="amber"] .workflow-controls button[aria-selected="true"] :is(.step-number,.step-arrow){color:var(--amber-edge);text-shadow:0 0 9px rgba(var(--amber-glow),.3)}
+html[data-accent="amber"] .site-header nav a[aria-current="location"]:not(.nav-contact){position:relative;color:var(--amber-ink);background:linear-gradient(90deg,#ed8e4314,#f3ac7205);border-color:#dca77870}
+html[data-accent="amber"] .site-header nav a[aria-current="location"]:not(.nav-contact):before{content:'';position:absolute;left:0;top:26%;height:48%;width:2px;border-radius:2px;background:#e68536;box-shadow:0 0 6px rgba(var(--amber-glow),.4);pointer-events:none}
+/* A hot core and orange falloff connect the glass reflections to the button rims. */
+html[data-accent="amber"] .system-diagram{
+ position:relative;background:radial-gradient(ellipse at 100% 0%,rgba(var(--amber-glow),.045),transparent 43%),linear-gradient(145deg,#1b2d46,#152640);
+ border-color:#ac784d4f;box-shadow:inset 0 1px 0 #f1b58333,inset -1px 0 0 #cf82471a,0 12px 30px #01081426;
+}
+html[data-accent="amber"] .system-diagram:before{content:'';position:absolute;top:-1px;right:18px;width:36%;height:1px;background:linear-gradient(90deg,transparent,#efa568 72%,var(--amber-hot) 83%,transparent);box-shadow:0 -3px 15px rgba(var(--amber-glow),.22);pointer-events:none}
+html[data-accent="amber"] .system-diagram:after{content:'';position:absolute;top:-3px;right:52px;width:28px;height:3px;border-radius:50%;background:var(--amber-hot);filter:blur(2px);box-shadow:0 0 14px 4px rgba(var(--amber-glow),.30);pointer-events:none}
+html[data-accent="amber"] .final-node{border-color:var(--amber-edge);background:linear-gradient(110deg,rgba(var(--amber-glow),.085),#2a3145 86%);box-shadow:inset 9px 0 18px -18px #ffad65}
+html[data-accent="amber"] .final-node :is(p,.node-mark){color:var(--amber-edge);text-shadow:0 0 9px rgba(var(--amber-glow),.14)}
+html[data-accent="amber"] :is(.workflow,.contact)>.material-glass{background:radial-gradient(ellipse at 0% 100%,rgba(var(--amber-glow),.045),transparent 42%),rgba(255,255,255,.72)}
+
+html[data-accent="amber"] .contact form{border-top-color:#ce8550;box-shadow:inset 0 1px 0 #fff,0 -5px 20px -15px #ec9a5c80,0 5px 24px #1a34540b}
+html[data-accent="amber"] .workflow-panel{background:radial-gradient(ellipse at 100% 0%,rgba(var(--amber-glow),.045),transparent 50%),rgba(255,255,255,.95);box-shadow:inset 0 1px 0 #fff,0 5px 24px #1a34540b}
+@media(prefers-reduced-motion:reduce){html[data-accent="amber"] :is(.button-copper,.nav-contact,.form-submit .button-dark){transition:none}}
+
+/* Concentrated edge lighting: a bright core and a short reflected halo,
+   rather than a low-contrast tint spread across the whole glass edge. */
+html[data-accent="amber"] :is(.workflow,.contact)>.material-glass{background:rgba(255,255,255,.72)}
+html[data-accent="amber"] .workflow-panel{background:rgba(255,255,255,.95)}
+
+html[data-accent="amber"] .final-node{
+ position:relative;border-left-color:#ffac60;
+ background:linear-gradient(90deg,#ff761d24,#2a3145 42%);
+ box-shadow:inset 12px 0 20px -14px #ff8c3a99;
+}
+html[data-accent="amber"] .final-node:before{
+ content:'';position:absolute;left:-3px;top:10%;bottom:10%;width:2px;pointer-events:none;
+ background:linear-gradient(to bottom,transparent,#ffc17e 18%,#fff2cf 48%,#ffd59c 64%,#ff9f4f 84%,transparent);
+ filter:drop-shadow(0 0 3px #ff9b40) drop-shadow(0 0 8px #ff751d99);
+}
+html[data-accent="amber"] .workflow-controls button[aria-selected="true"]{
+ box-shadow:inset 3px 0 0 #ffb469,inset 17px 0 22px -16px #ff7a2980,0 0 0 1px #ec88351a;
+}
+html[data-accent="amber"] .workflow-controls button[aria-selected="true"]:before{
+ top:10%;height:80%;width:2px;
+ background:linear-gradient(to bottom,transparent,#ffc17e 16%,#fff2cf 48%,#ffd59c 68%,#ff9f4f 85%,transparent);
+ box-shadow:none;filter:drop-shadow(0 0 3px #ff9b40) drop-shadow(0 0 8px #ff751db3);
+}
+
+
+/* Glass sectors illuminate as complete surfaces on pointer entry. */
+html[data-accent="amber"] .system-diagram:before,
+html[data-accent="amber"] .system-diagram:after{display:none}
+.glass-hover-ring{position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;opacity:0;border:1px solid #ffb66d;
+ box-shadow:inset 0 0 0 1px #ffe1a8b3,inset 0 0 8px #ff812438,0 0 0 1px #eb7d2b40,0 0 8px #ff8a346b,0 0 19px #ff741d26;
+ transition:opacity .24s ease;
+}
+html[data-accent="amber"] .is-glass-lit>.glass-edge>.glass-hover-ring,
+html[data-accent="amber"] .system-diagram.is-glass-lit>.glass-hover-ring{opacity:1}
+@media(prefers-reduced-motion:reduce){.glass-hover-ring{transition:none}}

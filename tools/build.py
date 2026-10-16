@@ -17,7 +17,7 @@ What the build changes, and why:
   only that channel is kept. The pixels that can be seen do not change.
 - Every local CSS, JS, image and SVG reference gets ?v=<content hash>, so a browser
   never keeps an old copy after an update.
-- <html> gets data-background="electronics" when the script defaults to that artwork,
+- <html> gets data-background="electronics" (and data-accent="amber") when the scripts default to them,
   so the browser does not download the classic artwork first.
 - The canonical link and the favicons are added to <head>.
 """
@@ -27,7 +27,10 @@ from PIL import Image, ImageDraw
 
 SRC = Path(sys.argv[1]).resolve()
 OUT = Path(__file__).resolve().parent.parent / 'site'
-TEXT = ['index.html', 'styles.css', 'materials.css', 'materials.js', 'script.js', 'engineering-network.js']
+# index.html plus every local stylesheet and script it links, so new CSS/JS files are picked up.
+TEXT = ['index.html'] + list(dict.fromkeys(re.findall(
+    r'<(?:link[^>]*\bhref|script[^>]*\bsrc)="(?![a-z]+:|/|assets/)([\w.-]+\.(?:css|js))(?:\?[^"]*)?"',
+    (SRC / 'index.html').read_text(encoding='utf-8'))))
 KEEP_PNG = {'linkport-symbol-reference.png'}
 RESIZE = {'linkport-logo.png': 430}
 # Files the build does not manage; they are never deleted.
@@ -154,6 +157,9 @@ for name in TEXT:
         html = re.sub(rf'(["\']){re.escape(name)}(?:\?v=[^"\']*)?\1', rf'\g<1>{name}?v={v}\1', html)
 if "!==\"classic\"" in texts.get('engineering-network.js', '') and 'data-background=' not in html.split('>', 2)[1]:
     html = re.sub(r'<html\b([^>]*)>', r'<html\1 data-background="electronics">', html, count=1)
+# Same for the accent colour: the page starts in amber instead of switching after the script runs.
+if "==='copper'?'copper':'amber'" in texts.get('amber.js', '') and 'data-accent=' not in html.split('>', 2)[1]:
+    html = re.sub(r'<html\b([^>]*)>', r'<html\1 data-accent="amber">', html, count=1)
 for logo, width in RESIZE.items():
     out = made.get(f'assets/{logo}')
     if out:

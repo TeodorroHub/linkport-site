@@ -53,7 +53,8 @@ git add -A && git commit -m "..." && git push
 The workflow publishes the new version within a minute or two. Do not copy the design folder into
 `site/` by hand: the build is what keeps the page light. It
 
-- publishes only the files that the HTML, CSS and JS reference (no image prompts, no unused drafts),
+- publishes index.html, every local stylesheet and script it links, and only the images those files
+  reference (no image prompts, no unused drafts),
 - turns PNG images into WebP (quality 82; images with transparency at 90) and scales the header logo
   to 430 px wide, about three times its displayed width,
 - keeps `linkport-symbol-reference.png` as PNG, because the script traces its pixels,
@@ -61,7 +62,7 @@ The workflow publishes the new version within a minute or two. Do not copy the d
   regions that show it and with only the red channel its `classic-ink` filter reads, so every visible
   pixel stays the same,
 - adds `?v=<content hash>` to every local CSS, JS and image reference, so browsers never keep an old copy,
-- sets `data-background="electronics"` on `<html>`, so the browser does not download the classic
-  artwork before the script switches to the electronics artwork,
+- sets `data-background="electronics"` and `data-accent="amber"` on `<html>`, so the browser does not
+  download the classic artwork, or paint the copper accent, before the scripts switch them,
 - adds the canonical link and the favicons to `<head>`, and
 - deletes published assets that the design no longer references.
