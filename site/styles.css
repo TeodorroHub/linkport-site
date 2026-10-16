@@ -99,7 +99,7 @@ body{overflow-x:clip}
 @media(max-width:760px){.hero-grid{row-gap:32px}.hero-note{grid-column:1;margin-top:-18px;font-size:10px}}
 
 /* Trial electronics collage: one coordinate system on light and dark surfaces. */
-html[data-background="electronics"] :is(.company,.workflow,.fit,.ai-support,.capabilities,.site-footer):before{background-image:url("assets/engineering-mixed-v2.svg")}
+html[data-background="electronics"] :is(.company,.workflow,.fit,.ai-support,.capabilities,.site-footer):before{background-image:url("assets/engineering-mixed-v2.svg?v=webp-1")}
 
 @media(min-width:1500px){html[data-background="electronics"] :is(.hero,.approach):before{background-position:center top}}
 
@@ -109,7 +109,7 @@ html[data-background="electronics"] :is(.company,.workflow,.fit,.ai-support,.cap
 .faq:before,.contact:before{content:'';position:absolute;inset:0;z-index:-2;pointer-events:none;background:url('assets/engineering-sketches-light-v1.webp') center bottom/cover no-repeat;opacity:.47;mix-blend-mode:multiply}
 .faq:before{left:calc(50% - 50vw);right:calc(50% - 50vw);mask-image:linear-gradient(to right,#000 0%,#000 21%,transparent 43%),linear-gradient(to bottom,transparent 15%,#000 55%);mask-composite:intersect}
 .contact:before{mask-image:linear-gradient(to right,#000 0%,#000 15%,transparent 44%,transparent 87%,#000 100%),linear-gradient(to bottom,transparent 12%,#000 58%);mask-composite:intersect;opacity:.38}
-html[data-background="electronics"] :is(.faq,.contact):before{background-image:url('assets/engineering-mixed-v2.svg')}
+html[data-background="electronics"] :is(.faq,.contact):before{background-image:url('assets/engineering-mixed-v2.svg?v=webp-1')}
 @media(max-width:760px){
  .faq:before,.contact:before{background-size:auto 900px;background-position:left bottom;opacity:.25}
  .faq:before{mask-image:linear-gradient(to right,#000,transparent 75%),linear-gradient(to bottom,transparent 5%,#000 65%);mask-composite:intersect}
