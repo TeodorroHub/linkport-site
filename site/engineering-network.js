@@ -65,12 +65,12 @@
  });
  const pointer={x:0,y:0,targetX:0,targetY:0,active:false};
  let width=0,height=0,scale=1,offsetX=0,offsetY=0,backgroundAlpha=.24;
- let canvasLeft=0,canvasTop=0;
+ let canvasLeft=0,canvasTop=0,spreadArtwork=false;
  let paused=reduced.matches,visible=true,frame=0,last=0,time=0;
  const strengths=groups.map(()=>0);
  let logoContours=[];
  const logoImage=new Image();
- logoImage.src='assets/linkport-symbol-reference.png';
+ logoImage.src='assets/linkport-symbol-reference.png?v=04284e8b';
  logoImage.addEventListener('load',()=>{
   // Trace the supplied symbol, preserving its actual silhouette and inner cuts.
   const sample=document.createElement('canvas');
@@ -115,18 +115,25 @@
  let artworkWidth=1536,artworkHeight=1024;
  let strokeAnchorsReady=false;
  const artwork=new Image();
- artwork.src=electronics?'assets/engineering-mixed-v2.svg?v=webp-1':(light?'assets/engineering-sketches-light-v1.webp':'assets/engineering-sketches-v2.webp');
+ artwork.src=electronics?'assets/engineering-mixed-v3.svg?v=c3abc3a5':(light?'assets/engineering-sketches-light-v1.webp?v=804fdbd3':'assets/engineering-sketches-v2.webp?v=f71e1c47');
  artwork.addEventListener('load',()=>{
   artworkWidth=artwork.naturalWidth;artworkHeight=artwork.naturalHeight;
   strokeAnchorsReady=true;resize();
  });
- function project(point){return{x:point[0]*scale+offsetX,y:point[1]*scale+offsetY};}
+ function project(point){
+  const x=spreadArtwork&&point[0]>=artworkWidth/2?width-(artworkWidth-point[0])*scale:point[0]*scale+offsetX;
+  return{x,y:point[1]*scale+offsetY};
+ }
  function resize(){
   const rect=hero.getBoundingClientRect();
   const backdrop=getComputedStyle(hero,'::before');
   canvasLeft=parseFloat(backdrop.left)||0;canvasTop=parseFloat(backdrop.top)||0;
   width=rect.width-canvasLeft-(parseFloat(backdrop.right)||0);height=rect.height-canvasTop-(parseFloat(backdrop.bottom)||0);
   canvas.style.left=canvasLeft+'px';canvas.style.top=canvasTop+'px';canvas.style.width=width+'px';canvas.style.height=height+'px';
+  // Keep both banks of objects at the section edges instead of zooming and cropping.
+  // Each bank retains uniform proportions; the quiet space between them expands.
+  spreadArtwork=electronics&&width>1100&&width/height>1.6;
+  hero.classList.toggle('engineering-spread',spreadArtwork);
   const ratio=Math.min(devicePixelRatio||1,2);
   canvas.width=Math.round(width*ratio);canvas.height=Math.round(height*ratio);
   ctx.setTransform(ratio,0,0,ratio,0,0);
@@ -137,6 +144,7 @@
   scale=backdrop.backgroundSize==='cover'||!fixedHeight?Math.max(width/artworkWidth,height/artworkHeight):fixedHeight/artworkHeight;
   offsetX=(width-artworkWidth*scale)*fraction(positions[0]);
   offsetY=(height-artworkHeight*scale)*fraction(positions[1]||positions[0]);
+  if(spreadArtwork){scale=height/artworkHeight;offsetX=0;offsetY=0;}
   const diagram=hero.querySelector('.system-diagram,.faq-list,#contact-form');
   if(diagram){const bounds=diagram.getBoundingClientRect();diagramBounds={left:bounds.left-rect.left-canvasLeft,right:bounds.right-rect.left-canvasLeft,top:bounds.top-rect.top-canvasTop,bottom:bounds.bottom-rect.top-canvasTop};}
   else diagramBounds=null;
@@ -211,7 +219,11 @@
   // There is no independent CSS background crop to drift out of alignment.
   if(strokeAnchorsReady&&!staticArtwork){
    ctx.save();ctx.globalAlpha=backgroundAlpha;
-   ctx.drawImage(artwork,offsetX,offsetY,artworkWidth*scale,artworkHeight*scale);
+   if(spreadArtwork){
+    const half=artworkWidth/2,bankWidth=half*scale;
+    ctx.drawImage(artwork,0,0,half,artworkHeight,0,0,bankWidth,height);
+    ctx.drawImage(artwork,half,0,half,artworkHeight,width-bankWidth,0,bankWidth,height);
+   }else ctx.drawImage(artwork,offsetX,offsetY,artworkWidth*scale,artworkHeight*scale);
    ctx.restore();
   }
   groups.forEach((group,index)=>{

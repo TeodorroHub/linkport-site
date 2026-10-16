@@ -32,7 +32,7 @@ body{background:#edf1f5}
 .glass-edge{border-color:rgba(126,148,174,.35);box-shadow:inset 0 2px 0 #fff,inset 2px 0 2px rgba(255,255,255,.92),inset -2px 0 2px rgba(130,161,198,.17),inset 0 -3px 2px rgba(104,140,183,.16),0 1px 0 rgba(255,255,255,.96),0 5px 12px rgba(26,52,84,.065)}
 .glass-edge:before{background:linear-gradient(108deg,rgba(255,255,255,.95),rgba(168,195,224,.28) 28%,rgba(255,255,255,.92) 50%,rgba(157,183,214,.25) 78%,rgba(255,255,255,.9));padding:2px;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor}
 
-.hero,.approach,.site-footer{background-image:linear-gradient(rgba(12,23,44,.64),rgba(12,23,44,.64)),url('assets/machined-navy-steel-v1.webp');background-size:cover;background-position:center}
+.hero,.approach,.site-footer{background-image:linear-gradient(rgba(12,23,44,.64),rgba(12,23,44,.64)),url('assets/machined-navy-steel-v1.webp?v=a044a6b6');background-size:cover;background-position:center}
 
 /* The fixed navigation is a glass cap over the metal-and-glass sections. */
 .site-header{background:linear-gradient(100deg,#ffffff 0%,#ffffff 24%,rgba(255,255,255,.87) 55%,rgba(244,249,255,.84) 100%);border-bottom:1px solid rgba(128,151,180,.40);box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 rgba(255,255,255,.90),0 3px 10px rgba(17,37,65,.08);backdrop-filter:blur(18px) saturate(110%);-webkit-backdrop-filter:blur(18px) saturate(110%)}

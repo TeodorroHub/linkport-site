@@ -35,26 +35,33 @@ are told apart by the subject.
 
 ## Background artwork
 
-The page uses the "electronics" background collage by default (`assets/engineering-mixed-v2.svg`).
+The page uses the "electronics" background collage by default (`assets/engineering-mixed-v3*.svg`).
 Adding `?background=classic` to the address switches to the earlier sketch artwork.
-`<html>` carries `data-background="electronics"` in the markup, so the browser never starts
-downloading the classic artwork before the script runs.
-
-## Image weight
-
-Images are WebP. The photographs and sketches are lossy WebP at quality 82; the logos are resized
-to about three times their displayed width. `engineering-mixed-v2.svg` embeds its pencil drawing
-once, as a lossless WebP, and reuses it with `<use>` in its three clipped regions. The drawing keeps
-only the red channel, which is the only channel its `classic-ink` filter reads, and is blank outside
-the clipped regions. `linkport-symbol-reference.png` stays PNG because the script traces its pixels.
-
-When a new image is added, convert it before committing, for example:
-
-```
-python3 -c "from PIL import Image; Image.open('in.png').convert('RGB').save('out.webp', quality=82, method=6)"
-```
+On wide sections the script adds `.engineering-spread`, and the CSS then shows the left and right
+halves (`engineering-mixed-v3-left.svg`, `-right.svg`) at the two edges.
 
 ## Change the site
 
-Edit the files in `site/`, open `site/index.html` in a browser to check, commit and push to `main`.
-The workflow publishes the new version within a minute or two.
+The design is edited in its own folder (on Vladimir's computer: `E:\LinkPort website\linkport-landing\linkport-landing`).
+To publish a new version of it, build `site/` from that folder and push to `main`:
+
+```
+python3 tools/build.py <design folder>
+git add -A && git commit -m "..." && git push
+```
+
+The workflow publishes the new version within a minute or two. Do not copy the design folder into
+`site/` by hand: the build is what keeps the page light. It
+
+- publishes only the files that the HTML, CSS and JS reference (no image prompts, no unused drafts),
+- turns PNG images into WebP (quality 82; images with transparency at 90) and scales the header logo
+  to 430 px wide, about three times its displayed width,
+- keeps `linkport-symbol-reference.png` as PNG, because the script traces its pixels,
+- stores the pencil drawing embedded in the SVG backgrounds as lossless WebP, blank outside the clip
+  regions that show it and with only the red channel its `classic-ink` filter reads, so every visible
+  pixel stays the same,
+- adds `?v=<content hash>` to every local CSS, JS and image reference, so browsers never keep an old copy,
+- sets `data-background="electronics"` on `<html>`, so the browser does not download the classic
+  artwork before the script switches to the electronics artwork,
+- adds the canonical link and the favicons to `<head>`, and
+- deletes published assets that the design no longer references.
