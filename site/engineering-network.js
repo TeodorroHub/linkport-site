@@ -5,8 +5,8 @@
 (function(){
  const electronics=new URLSearchParams(location.search).get("background")!=="classic";
  document.documentElement.dataset.background=electronics?"electronics":"classic";
- document.querySelectorAll('[data-engineering-surface],.company,.capabilities,.ai-support,.workflow,.fit,.site-footer').forEach(function engineeringObjects(hero){
- const light=hero.matches('.company,.capabilities,.ai-support,.workflow,.fit');
+ document.querySelectorAll('[data-engineering-surface],.company,.capabilities,.ai-support,.workflow,.fit,.faq,.contact,.site-footer').forEach(function engineeringObjects(hero){
+ const light=hero.matches('.company,.capabilities,.ai-support,.workflow,.fit,.faq,.contact');
  const staticArtwork=light||hero.matches('.site-footer');
  let canvas=hero.querySelector('[data-engineering-canvas]');
  if(!canvas){canvas=document.createElement('canvas');canvas.className='engineering-network';canvas.setAttribute('data-engineering-canvas','');canvas.setAttribute('aria-hidden','true');hero.prepend(canvas);}
@@ -137,7 +137,7 @@
   scale=backdrop.backgroundSize==='cover'||!fixedHeight?Math.max(width/artworkWidth,height/artworkHeight):fixedHeight/artworkHeight;
   offsetX=(width-artworkWidth*scale)*fraction(positions[0]);
   offsetY=(height-artworkHeight*scale)*fraction(positions[1]||positions[0]);
-  const diagram=hero.querySelector('.system-diagram');
+  const diagram=hero.querySelector('.system-diagram,.faq-list,#contact-form');
   if(diagram){const bounds=diagram.getBoundingClientRect();diagramBounds={left:bounds.left-rect.left-canvasLeft,right:bounds.right-rect.left-canvasLeft,top:bounds.top-rect.top-canvasTop,bottom:bounds.bottom-rect.top-canvasTop};}
   else diagramBounds=null;
   groups.forEach(updateAnchors);
@@ -146,6 +146,8 @@
  function covered(point){return diagramBounds&&point.x>diagramBounds.left&&point.x<diagramBounds.right&&point.y>diagramBounds.top&&point.y<diagramBounds.bottom;}
  function shownInSketch(point){
   if(!staticArtwork)return true;
+  if(hero.matches(".faq"))return point.x/width<.35&&point.y/height>.42;
+  if(hero.matches(".contact"))return (point.x/width<.34&&point.y/height>.45)||point.x/width>.93;
   if(electronics){const x=point.x/width,y=point.y/height;return x<.27||x>.75||y<.23||y>.78;}
   const x=point.x/width,y=point.y/height;
   // Match the quiet central zones of the existing CSS masks; never attach in a blank area.
