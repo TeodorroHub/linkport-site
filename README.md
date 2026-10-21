@@ -40,6 +40,27 @@ Adding `?background=classic` to the address switches to the earlier sketch artwo
 On wide sections the script adds `.engineering-spread`, and the CSS then shows the left and right
 halves (`engineering-mixed-v3-left.svg`, `-right.svg`) at the two edges.
 
+## The product video (extras/)
+
+The video in "Our product" is not part of the design folder: it lives in `extras/`, and
+`tools/build.py` inserts it on every build, so a new version of the design keeps it.
+
+| File | What |
+|---|---|
+| `extras/product-video.html` | the block inside `<section class="product-intro">`: our poster, a link to the video on YouTube, the text, links to YouTube and to quotiflex.com/#videos |
+| `extras/privacy-video.html` | the paragraph in "Privacy & website information" about how the video plays |
+| `extras/video.css`, `extras/video.js` | the look, and the click that puts YouTube's privacy-enhanced player (youtube-nocookie.com) in place of the poster |
+| `extras/assets/video-N-*.webp` | the poster, from the cover frame of the video |
+
+The build also adds `frame-src https://www.youtube-nocookie.com` to the page's CSP. Before the
+visitor presses play, the page requests nothing from YouTube; without script the poster is a plain
+link to YouTube. If the design ever drops the product section or the privacy paragraph, the build
+stops and says so, instead of publishing the page without the video.
+
+To show another video here (for example the two-minute overview, video 7, when it exists), change
+the YouTube id, the title, the length and the text in `extras/product-video.html` and replace the
+poster in `extras/assets/`. All videos are on quotiflex.com; this site shows one.
+
 ## Change the site
 
 The design is edited in its own folder (on Vladimir's computer: `E:\LinkPort website\linkport-landing\linkport-landing`).

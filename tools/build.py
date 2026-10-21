@@ -170,10 +170,35 @@ if HEAD[0] not in html:
     m = re.search(r'<meta name="theme-color"[^>]*>\r?\n?', html)
     nl = '\r\n' if '\r\n' in html else '\n'
     html = html[:m.end()] + nl.join(HEAD) + nl + html[m.end():]
+
+# The product video lives in this repository (extras/), not in the design folder, so a new
+# version of the design keeps it. It goes into "Our product", the privacy text says how it
+# plays, and the CSP allows YouTube's privacy-enhanced player as a frame, nothing more.
+EXTRAS = Path(__file__).resolve().parent.parent / 'extras'
+extras_out = set()
+if EXTRAS.is_dir():
+    def must(found, what):
+        if not found:
+            sys.exit(f'The design changed: {what} not found; place the product video by hand.')
+    for name in ('video.css', 'video.js'):
+        (OUT / name).write_bytes((EXTRAS / name).read_bytes()); extras_out.add(name)
+    for f in (EXTRAS / 'assets').iterdir():
+        (OUT / 'assets' / f.name).write_bytes(f.read_bytes()); extras_out.add(f'assets/{f.name}')
+    section = re.search(r'<section class="product-intro\b.*?(\s*</section>)', html, re.S)
+    must(section, 'the section "product-intro"')
+    html = html[:section.start(1)] + '\n' + (EXTRAS / 'product-video.html').read_text(encoding='utf-8').rstrip() + html[section.start(1):]
+    links = 'Links on this page may take you'
+    must(links in html, 'the privacy paragraph about links')
+    html = html.replace(f'<p>{links}', (EXTRAS / 'privacy-video.html').read_text(encoding='utf-8').strip() + f'<p>{links}', 1)
+    must('connect-src https://formspree.io;' in html, 'the CSP of the page')
+    html = html.replace('connect-src https://formspree.io;', 'connect-src https://formspree.io; frame-src https://www.youtube-nocookie.com;', 1)
+    head_end = html.index('</head>')
+    html = (html[:head_end] + f'<link rel="stylesheet" href="video.css?v={h8((OUT / "video.css").read_bytes())}">\n'
+            f'<script src="video.js?v={h8((OUT / "video.js").read_bytes())}" defer></script>\n' + html[head_end:])
 (OUT / 'index.html').write_text(html, encoding='utf-8')
 
 # Remove published assets the design no longer references.
-keep = {v.split('?')[0] for v in made.values()} | set(TEXT) | OWN
+keep = {v.split('?')[0] for v in made.values()} | set(TEXT) | OWN | extras_out
 for f in OUT.rglob('*'):
     rel = f.relative_to(OUT).as_posix()
     if f.is_file() and rel not in keep:
