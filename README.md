@@ -47,19 +47,21 @@ The video in "Our product" is not part of the design folder: it lives in `extras
 
 | File | What |
 |---|---|
-| `extras/product-video.html` | the block inside `<section class="product-intro">`: our poster, a link to the video on YouTube, the text, links to YouTube and to quotiflex.com/#videos |
+| `extras/product-video.html` | the blocks inside `<section class="product-intro">`, one per video: our poster, a link to the video on YouTube, the text, links to YouTube and to quotiflex.com/#videos |
 | `extras/privacy-video.html` | the paragraph in "Privacy & website information" about how the video plays |
 | `extras/video.css`, `extras/video.js` | the look, and the click that puts YouTube's privacy-enhanced player (youtube-nocookie.com) in place of the poster |
-| `extras/assets/video-N-*.webp` | the poster, from the cover frame of the video |
+| `extras/assets/video-N-*.webp` | the posters, from the cover frame of each video |
 
 The build also adds `frame-src https://www.youtube-nocookie.com` to the page's CSP. Before the
 visitor presses play, the page requests nothing from YouTube; without script the poster is a plain
 link to YouTube. If the design ever drops the product section or the privacy paragraph, the build
 stops and says so, instead of publishing the page without the video.
 
-To show another video here (for example the two-minute overview, video 7, when it exists), change
-the YouTube id, the title, the length and the text in `extras/product-video.html` and replace the
-poster in `extras/assets/`. All videos are on quotiflex.com; this site shows one.
+`extras/product-video.html` holds one `<div class="product-video">` per video, each across the full
+width of the section (YouTube picks 1080p only for a wide player; at about 750 px it plays 720p).
+To add a video, copy a block and change the YouTube id, the title, the length and the text, and add
+its posters `extras/assets/video-N-{640,1280,1920}.webp` from the cover frame. Only one video plays
+at a time: starting another puts the poster back on the first. All videos are on quotiflex.com.
 
 ## Change the site
 

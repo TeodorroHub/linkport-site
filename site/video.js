@@ -3,6 +3,8 @@
 // to YouTube with our own poster. Pressing it puts YouTube's privacy-enhanced player
 // (youtube-nocookie.com) in its place and starts the video; before that, nothing is requested
 // from YouTube. Without script the link opens YouTube.
+// Only one video plays at a time: starting another puts the poster back on the first.
+let playingVideo=null;
 document.querySelectorAll('a.video-poster[data-youtube]').forEach(poster=>{
  poster.addEventListener('click',event=>{
   if(event.ctrlKey||event.metaKey||event.shiftKey||event.button!==0)return;
@@ -16,6 +18,6 @@ document.querySelectorAll('a.video-poster[data-youtube]').forEach(poster=>{
   player.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';
   player.allowFullscreen=true;
   player.setAttribute('referrerpolicy','strict-origin-when-cross-origin');
-  frame.append(player);poster.replaceWith(frame);player.focus();
+  frame.append(player);if(playingVideo)playingVideo.frame.replaceWith(playingVideo.poster);poster.replaceWith(frame);playingVideo={frame,poster};player.focus();
  });
 });
