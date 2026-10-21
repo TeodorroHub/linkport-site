@@ -1,6 +1,6 @@
 /* The product video inside "Our product" (added by tools/build.py, not part of the design folder).
    The poster is ours; YouTube's privacy-enhanced player loads only when it is pressed. */
-.product-video{flex-basis:100%;display:grid;grid-template-columns:minmax(0,1.95fr) minmax(0,1fr);gap:40px;align-items:center;margin-top:8px}
+.product-video{flex-basis:100%;display:grid;grid-template-columns:minmax(0,1fr);gap:30px;margin-top:8px}
 .video-poster,.video-frame{position:relative;display:block;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:var(--soft);border:1px solid var(--line);box-shadow:0 14px 34px #0c172c1a}
 .video-poster img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
 .video-poster:hover img{transform:scale(1.02)}
@@ -10,11 +10,17 @@
 .video-play-dot:after{content:'';position:absolute;left:14px;top:11px;border-style:solid;border-width:8px 0 8px 12px;border-color:transparent transparent transparent #fff6e9}
 .video-poster:hover .video-play,.video-poster:focus-visible .video-play{transform:translateY(-2px);box-shadow:0 14px 30px #0c172c3a}
 .video-time{color:var(--muted);font-weight:400}
+.product-video-copy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);column-gap:56px;align-items:start}
+.product-video-copy>.eyebrow{grid-column:1;grid-row:1}
+.product-video-copy>h3{grid-column:1;grid-row:2}
+.product-video-copy>p:not(.eyebrow):not(.video-note){grid-column:2;grid-row:1/3}
+.product-video-links{grid-column:2;grid-row:3}
+.product-video-copy>.video-note{grid-column:2;grid-row:4}
 .product-video-copy h3{font-size:22px;letter-spacing:-.5px;line-height:1.25;margin-bottom:12px}
 .product-video-copy>p:not(.eyebrow){font-size:14px;color:var(--muted)}
 .product-video-copy .eyebrow{margin:0 0 14px;padding-left:0;border-left:0}
 .product-video-links{display:flex;flex-wrap:wrap;gap:12px 26px;margin-top:20px}
 .product-video-links .text-link{margin-left:0;white-space:nowrap}
 .product-video-copy>.video-note{font-size:12px;margin-top:18px}
-@media(max-width:1000px){.product-video{grid-template-columns:1fr;gap:24px}}
+@media(max-width:760px){.product-video{gap:24px}.product-video-copy{display:block}}
 @media(max-width:540px){.video-play{left:10px;bottom:10px;padding:5px 12px 5px 5px}.video-play-dot{width:32px;height:32px}.video-play-dot:after{left:12px;top:9px;border-width:7px 0 7px 10px}.video-play-label{display:none}.product-video-copy h3{font-size:20px}}
