@@ -60,8 +60,10 @@ privacy paragraph, the build stops and says so, instead of publishing the page w
 The player runs across the full width of the section, 1180 px: YouTube picks 1080p only for a wide
 player (at about 750 px it plays 720p). Choosing a video in the list puts it in the player and starts
 it, and the address gets its anchor (`#video-accessory-rules`), so a link with it opens the page with
-that video in the player. Only one video plays at a time. To add a video, add its posters and copy a
-`<li>` of `<ol class="video-list">`: the anchor, the YouTube id in `href` and `data-youtube`, the
+that video in the player. Only one video plays at a time. To add a video, add its posters, add a
+`<span class="video-anchor" id="video-...">` next to the others at the top of the block (the browser
+scrolls a link with that anchor there), and copy a `<li>` of `<ol class="video-list">`: the same
+anchor in `data-anchor`, the YouTube id in `href` and `data-youtube`, the
 poster base in `data-poster`, the length in `data-length` and `data-length-label`, the text in
 `data-desc`, and the picture, topic, title and length shown in the entry. The same videos are on
 quotiflex.com/#videos.

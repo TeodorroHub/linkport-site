@@ -5,7 +5,8 @@
 // from YouTube. Without script the link opens YouTube.
 // One player and a list: choosing a video in the list puts it in the player and starts it, and
 // the address gets the video's anchor (#video-...), so a link with that anchor opens the page
-// with that video in the player.
+// with that video in the player. The anchors sit at the top of the player, so the browser
+// scrolls a link with one to the player by itself.
 (()=>{
  let playing=null;
  const stop=()=>{if(playing)playing.frame.replaceWith(playing.poster);playing=null;};
@@ -57,17 +58,11 @@
  };
  items.forEach(item=>item.addEventListener('click',event=>{
   if(!plainClick(event))return;
-  event.preventDefault();select(item);history.replaceState(null,'',`#${item.id}`);showPlayer();play(poster);
+  event.preventDefault();select(item);history.replaceState(null,'',`#${item.dataset.anchor}`);showPlayer();play(poster);
  }));
  const fromAddress=()=>{
-  const item=items.find(candidate=>`#${candidate.id}`===location.hash);
-  if(!item)return;
-  select(item);
-  // The browser itself scrolls to the list item named in the address once the page has loaded;
-  // scrolling again after that keeps the player, not the list, in view.
-  const toPlayer=()=>library.scrollIntoView({block:'start'});
-  toPlayer();
-  if(document.readyState!=='complete')addEventListener('load',()=>requestAnimationFrame(toPlayer),{once:true});
+  const item=items.find(candidate=>`#${candidate.dataset.anchor}`===location.hash);
+  if(item)select(item);
  };
  fromAddress();
  addEventListener('hashchange',fromAddress);
