@@ -40,28 +40,31 @@ Adding `?background=classic` to the address switches to the earlier sketch artwo
 On wide sections the script adds `.engineering-spread`, and the CSS then shows the left and right
 halves (`engineering-mixed-v3-left.svg`, `-right.svg`) at the two edges.
 
-## The product video (extras/)
+## The product videos (extras/)
 
-The video in "Our product" is not part of the design folder: it lives in `extras/`, and
-`tools/build.py` inserts it on every build, so a new version of the design keeps it.
+The videos in "Our product" are not part of the design folder: they live in `extras/`, and
+`tools/build.py` inserts them on every build, so a new version of the design keeps them.
 
 | File | What |
 |---|---|
-| `extras/product-video.html` | the blocks inside `<section class="product-intro">`, one per video: our poster, a link to the video on YouTube, the text, links to YouTube and to quotiflex.com/#videos |
-| `extras/privacy-video.html` | the paragraph in "Privacy & website information" about how the video plays |
-| `extras/video.css`, `extras/video.js` | the look, and the click that puts YouTube's privacy-enhanced player (youtube-nocookie.com) in place of the poster |
-| `extras/assets/video-N-*.webp` | the posters, from the cover frame of each video |
+| `extras/product-video.html` | the block inside `<section class="product-intro">`: one player, the text of the chosen video, the list of all videos, the note about YouTube |
+| `extras/privacy-video.html` | the paragraph in "Privacy & website information" about how a video plays |
+| `extras/video.css`, `extras/video.js` | the look; the click that puts YouTube's privacy-enhanced player (youtube-nocookie.com) in place of the poster; choosing a video in the list |
+| `extras/assets/video-N-{640,1280,1920}.webp` | the posters, from the cover frame of each video |
 
 The build also adds `frame-src https://www.youtube-nocookie.com` to the page's CSP. Before the
-visitor presses play, the page requests nothing from YouTube; without script the poster is a plain
-link to YouTube. If the design ever drops the product section or the privacy paragraph, the build
-stops and says so, instead of publishing the page without the video.
+visitor presses play, the page requests nothing from YouTube; without script the poster and the
+list entries are plain links to YouTube. If the design ever drops the product section or the
+privacy paragraph, the build stops and says so, instead of publishing the page without the videos.
 
-`extras/product-video.html` holds one `<div class="product-video">` per video, each across the full
-width of the section (YouTube picks 1080p only for a wide player; at about 750 px it plays 720p).
-To add a video, copy a block and change the YouTube id, the title, the length and the text, and add
-its posters `extras/assets/video-N-{640,1280,1920}.webp` from the cover frame. Only one video plays
-at a time: starting another puts the poster back on the first. All videos are on quotiflex.com.
+The player runs across the full width of the section, 1180 px: YouTube picks 1080p only for a wide
+player (at about 750 px it plays 720p). Choosing a video in the list puts it in the player and starts
+it, and the address gets its anchor (`#video-accessory-rules`), so a link with it opens the page with
+that video in the player. Only one video plays at a time. To add a video, add its posters and copy a
+`<li>` of `<ol class="video-list">`: the anchor, the YouTube id in `href` and `data-youtube`, the
+poster base in `data-poster`, the length in `data-length` and `data-length-label`, the text in
+`data-desc`, and the topic, title and length shown in the entry. The same videos, with pictures in
+the list, are on quotiflex.com/#videos.
 
 ## Change the site
 
