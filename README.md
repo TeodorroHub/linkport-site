@@ -63,8 +63,8 @@ it, and the address gets its anchor (`#video-accessory-rules`), so a link with i
 that video in the player. Only one video plays at a time. To add a video, add its posters and copy a
 `<li>` of `<ol class="video-list">`: the anchor, the YouTube id in `href` and `data-youtube`, the
 poster base in `data-poster`, the length in `data-length` and `data-length-label`, the text in
-`data-desc`, and the topic, title and length shown in the entry. The same videos, with pictures in
-the list, are on quotiflex.com/#videos.
+`data-desc`, and the picture, topic, title and length shown in the entry. The same videos are on
+quotiflex.com/#videos.
 
 ## Change the site
 
