@@ -20,6 +20,8 @@ What the build changes, and why:
 - <html> gets data-background="electronics" (and data-accent="amber") when the scripts default to them,
   so the browser does not download the classic artwork first.
 - The canonical link and the favicons are added to <head>.
+- tools/seo.py adds the search engine tags, the company's registration details and the link
+  to the Czech page, and makes the Czech page cs.html with tools/cs.py.
 """
 import base64, hashlib, io, re, sys, xml.etree.ElementTree as ET
 from pathlib import Path
@@ -34,7 +36,8 @@ TEXT = ['index.html'] + list(dict.fromkeys(re.findall(
 KEEP_PNG = {'linkport-symbol-reference.png'}
 RESIZE = {'linkport-logo.png': 430}
 # Files the build does not manage; they are never deleted.
-OWN = {'favicon-32.png', 'robots.txt', 'sitemap.xml', 'assets/icon-192.png', 'assets/apple-touch-icon.png'}
+OWN = {'favicon-32.png', 'favicon.ico', 'robots.txt', 'sitemap.xml', 'assets/icon-192.png', 'assets/apple-touch-icon.png',
+       'assets/og-image.jpg', 'assets/og-image-cs.jpg'}
 HEAD = ['<link rel="canonical" href="https://linkport.cz/">',
         '<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">',
         '<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">',
@@ -195,7 +198,18 @@ if EXTRAS.is_dir():
     head_end = html.index('</head>')
     html = (html[:head_end] + f'<link rel="stylesheet" href="video.css?v={h8((OUT / "video.css").read_bytes())}">\n'
             f'<script src="video.js?v={h8((OUT / "video.js").read_bytes())}" defer></script>\n' + html[head_end:])
+# Search engines, the company's registration details and the Czech page (https://linkport.cz/cs)
+# live in tools/seo.py and tools/cs.py, not in the design folder, so a new version of the design
+# keeps them. If the design changes a text they rely on, the build stops and says which.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import seo
+html = seo.seo(html)
 (OUT / 'index.html').write_text(html, encoding='utf-8')
+(OUT / 'cs-script.js').write_text(seo.czech_script((OUT / 'script.js').read_text(encoding='utf-8')), encoding='utf-8')
+(OUT / 'cs-video.js').write_text(seo.czech_video((OUT / 'video.js').read_text(encoding='utf-8')), encoding='utf-8')
+cs_hashes = {name: h8((OUT / name).read_bytes()) for name in ('cs-script.js', 'cs-video.js')}
+(OUT / 'cs.html').write_text(seo.czech(html, cs_hashes), encoding='utf-8')
+extras_out |= {'cs.html', 'cs-script.js', 'cs-video.js'}
 
 # Remove published assets the design no longer references.
 keep = {v.split('?')[0] for v in made.values()} | set(TEXT) | OWN | extras_out
