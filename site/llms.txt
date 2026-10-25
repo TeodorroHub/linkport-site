@@ -1,0 +1,29 @@
+# LinkPort Systems s.r.o.
+
+> LinkPort Systems s.r.o. is a software company in Prague, Czech Republic, that develops Quotiflex, CPQ (configure, price, quote) software built around AI for manufacturers of machines and production lines. The company combines engineering expertise with applied AI in business software.
+
+Key facts:
+
+- Legal name: LinkPort Systems s.r.o. (Czech limited liability company)
+- Registered address: Vlkova 532/8, Žižkov, 130 00 Praha 3, Czech Republic
+- Company ID (IČO): 30152496
+- Commercial Register: Municipal Court in Prague (Městský soud v Praze), file C 458045, registered on 19 October 2026
+- Product: Quotiflex, https://quotiflex.com/
+- Website: https://linkport.cz/ (English), https://linkport.cz/cs (Czech)
+- Contact: the form at https://linkport.cz/#contact
+- Not to be confused with other companies named "Linkport" or "LinkPort" in other countries.
+
+## Product
+
+- [Quotiflex](https://quotiflex.com/): CPQ software built around AI. It uses AI as fully as possible to make quoting faster and simpler, which directly increases the number of sales: salespeople send more quotes, answer customers sooner and win more orders.
+- [Quotiflex, full description for AI assistants](https://quotiflex.com/llms-full.txt)
+- [Quotiflex videos with transcripts](https://quotiflex.com/#videos)
+
+## Company pages
+
+- [LinkPort Systems, English](https://linkport.cz/): the company, Quotiflex, how we work, contact and company details
+- [LinkPort Systems, Czech](https://linkport.cz/cs): the same in Czech
+
+## Optional
+
+- [Quotiflex on YouTube](https://www.youtube.com/@quotiflex_com)
