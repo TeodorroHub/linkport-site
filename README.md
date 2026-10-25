@@ -101,6 +101,21 @@ once the design folder is corrected, that rule finds nothing to change.
 property `linkport.cz`, owned by vs@linkport.cz (verified through the Google Workspace TXT record);
 the sitemap is submitted there.
 
+## AI assistants (ChatGPT, Claude, Gemini, Perplexity, Copilot)
+
+- `site/robots.txt`, `site/llms.txt` and the key file are not part of the design; `tools/build.py`
+  keeps them (`OWN`). `site/robots.txt` allows every crawler and names the AI search and assistant crawlers explicitly
+  (OAI-SearchBot, ChatGPT-User, GPTBot, ClaudeBot, Claude-SearchBot, Claude-User, PerplexityBot,
+  Google-Extended, Applebot-Extended, Bingbot and others). Do not block them: ChatGPT and Copilot
+  search through Bing, Claude through its own crawlers and Brave, Gemini through Google.
+- `site/llms.txt` is the short description of the site for AI assistants (the llms.txt convention),
+  `the full product description is on quotiflex.com (`llms-full.txt`)`. Keep them in step with the page when a text or a fact changes.
+- `site/323dad004b99ba6e889335e7b6417e60.txt` is the IndexNow key. After a change, send the changed addresses to
+  `https://api.indexnow.org/indexnow?url=<address>&key=323dad004b99ba6e889335e7b6417e60`; Bing, Seznam and Yandex share them.
+- AI assistants quote plain, complete sentences: every important fact (what the product is, who makes
+  it, what the AI does, what it changes for sales) is written out once in plain words in the page and
+  in the questions and answers, not only in pictures or in text that a script shows later.
+
 ## Change the site
 
 The design is edited in its own folder (on Vladimir's computer: `E:\LinkPort website\linkport-landing\linkport-landing`).
