@@ -17,6 +17,8 @@ four A records for the apex pointing to GitHub Pages and `www` as a CNAME to `te
 |---|---|
 | `site/` | The published website: plain HTML, CSS and JavaScript, no framework, no build step |
 | `site/assets/` | Logos and background artwork |
+| `site/cs.html`, `site/cs-script.js`, `site/cs-video.js` | The Czech page, served at https://linkport.cz/cs, and its scripts; made by the build |
+| `tools/seo.py`, `tools/cs.py` | Search engine tags, registration details and the Czech page (see below) |
 | `.github/workflows/pages.yml` | Publishes `site/` to GitHub Pages on every push to `main` |
 
 ## Rules the site keeps
@@ -25,7 +27,11 @@ four A records for the apex pointing to GitHub Pages and `www` as a CNAME to `te
 - A Content-Security-Policy in `index.html` allows scripts, styles and images from this site only,
   and network requests only to Formspree.
 - Every asset path is relative.
-- No registration numbers, phone numbers or company email are published until they exist.
+- The company's registration details are on the page, as § 435 of the Civil Code asks of a company's
+  website: IČO 30152496, the commercial register at the Municipal Court in Prague, file C 458045, and the
+  registered address as the register writes it (Vlkova 532/8, Žižkov, 130 00 Praha 3). `tools/seo.py`
+  adds them, so they stay when the design changes. No phone numbers or company email are published
+  until they exist.
 
 ## Contact form
 
@@ -67,6 +73,33 @@ anchor in `data-anchor`, the YouTube id in `href` and `data-youtube`, the
 poster base in `data-poster`, the length in `data-length` and `data-length-label`, the text in
 `data-desc`, and the picture, topic, title and length shown in the entry. The same videos are on
 quotiflex.com/#videos.
+
+## Search engines and the Czech page
+
+`tools/build.py` calls `tools/seo.py` after it has put the page together. It
+
+- sets the title (up to 60 characters) and the meta description (up to 155),
+- adds Open Graph and Twitter tags with `assets/og-image.jpg` (Czech page: `assets/og-image-cs.jpg`),
+  1200 x 630, made from the first screen of the page,
+- adds JSON-LD: `Organization` (LinkPort Systems s.r.o., address, IČO, logo `assets/icon-192.png`,
+  the brand Quotiflex), `WebSite` and `WebPage`,
+- links the two languages with `hreflang` (en, cs, x-default = English) and adds "Česky" / "English" to
+  the menu,
+- adds the registration details to "Company details", the privacy text and the footer, and writes the
+  street as the register does,
+- makes `cs.html` from the finished English page with the pairs of `tools/cs.py`, and `cs-script.js`,
+  `cs-video.js` from the two scripts (the workflow texts, the form messages, the video labels). The
+  Czech page lives at the root (`/cs`, not `/cs/`), so every relative address of the design, also the
+  ones in `engineering-network.js`, works on it unchanged.
+
+Every text that `seo.py` and `cs.py` replace must be found. When the design changes an English text,
+the build stops and names it: add or change its pair in `tools/cs.py` and build again. The design
+folder still writes the street as "Vlková" and the district as "Praha"; the build corrects both, and
+once the design folder is corrected, that rule finds nothing to change.
+
+`site/sitemap.xml` lists both pages with their `hreflang` alternates. Google Search Console: the domain
+property `linkport.cz`, owned by vs@linkport.cz (verified through the Google Workspace TXT record);
+the sitemap is submitted there.
 
 ## Change the site
 
