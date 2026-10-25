@@ -37,7 +37,9 @@ KEEP_PNG = {'linkport-symbol-reference.png'}
 RESIZE = {'linkport-logo.png': 430}
 # Files the build does not manage; they are never deleted.
 OWN = {'favicon-32.png', 'favicon.ico', 'robots.txt', 'sitemap.xml', 'assets/icon-192.png', 'assets/apple-touch-icon.png',
-       'assets/og-image.jpg', 'assets/og-image-cs.jpg'}
+       'assets/og-image.jpg', 'assets/og-image-cs.jpg',
+       # The description for AI assistants and the IndexNow key (Bing, Seznam, Yandex); see README.
+       'llms.txt', '323dad004b99ba6e889335e7b6417e60.txt'}
 HEAD = ['<link rel="canonical" href="https://linkport.cz/">',
         '<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">',
         '<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">',
