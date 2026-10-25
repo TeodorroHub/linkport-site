@@ -33,6 +33,8 @@ COMPANY = {
     'foundingDate': '2026-10-19',
     'brand': {'@type': 'Brand', 'name': 'Quotiflex', 'url': 'https://quotiflex.com/',
               'logo': 'https://quotiflex.com/img/logo-mark.png'},
+    # The company's profiles on other sites, so search engines and AI assistants join them to this site.
+    'sameAs': ['https://www.linkedin.com/company/linkport-systems/', 'https://www.crunchbase.com/organization/linkport-systems'],
 }
 
 EN = {
